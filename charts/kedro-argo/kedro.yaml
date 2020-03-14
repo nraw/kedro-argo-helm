@@ -1,0 +1,10 @@
+image: nraw/argokedro:latest
+project_name: yaaaaaaaaaaaaaaaaaaas
+tasks:
+- name: best-first-node
+  dep: []
+  node: best_first_node
+- name: best-second-node
+  dep:
+  - best-first-node
+  node: best_second_node

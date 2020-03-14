@@ -11,17 +11,17 @@ spec:
       - name: kedro_node
     container:
       image: {{ .Values.image }}
-      command: [sh, -c]
+      command: [/bin/sh]
       args: ["-c", {{printf "kedro run -n {{%s}}" "inputs.parameters.kedro_node" | quote}}]
   - name: dag
     dag:
       tasks:
       {{- range .Values.tasks }}
-      - name: {{ .clean_name | quote }}
+      - name: {{ .name | quote }}
         template: kedro
         dependencies: {{ .dep }}
         arguments:
           parameters: 
           - name: kedro_node
-            value: {{ .name | quote }}
+            value: {{ .node | quote }}
       {{- end}}
