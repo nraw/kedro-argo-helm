@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: {{ .Values.project_name }}-
+spec:
+  entrypoint: dag
+  templates:
+  - name: kedro
+    inputs:
+      parameters:
+      - name: kedro_node
+    container:
+      image: {{ .Values.image }}
+      command: [sh, -c]
+      args: ["-c", {{printf "kedro run -n {{%s}}" "inputs.parameters.kedro_node" | quote}}]
+  - name: dag
+    dag:
+      tasks:
+      {{- range .Values.tasks }}
+      - name: {{ .clean_name | quote }}
+        template: kedro
+        dependencies: {{ .dep }}
+        arguments:
+          parameters: 
+          - name: kedro_node
+            value: {{ .name | quote }}
+      {{- end}}
