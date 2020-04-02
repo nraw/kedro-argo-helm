@@ -1,3 +1,4 @@
+---
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
@@ -12,7 +13,9 @@ spec:
     container:
       image: {{ .Values.image }}
       command: [/bin/sh]
-      args: ["-c", {{printf "kedro run -n {{%s}}" "inputs.parameters.kedro_node" | quote}}]
+      args:
+        - "-c",
+        - {{printf "kedro run -n {{%s}}" "inputs.parameters.kedro_node" | quote}}
   - name: dag
     dag:
       tasks:
@@ -21,7 +24,7 @@ spec:
         template: kedro
         dependencies: {{ .dep }}
         arguments:
-          parameters: 
+          parameters:
           - name: kedro_node
             value: {{ .node | quote }}
       {{- end}}
