@@ -2,8 +2,18 @@ apiVersion: v1
 entries:
   kedro-argo:
   - apiVersion: v2
+    appVersion: 0.0.8
+    created: "2020-04-02T22:15:59.342000285+02:00"
+    description: A Helm chart for building an Argo pipeline from Kedro
+    digest: fd1e4f9c3eefd53b1ed6278f7424039e719eefbdee6a21ab3afbe27c642a8b00
+    name: kedro-argo
+    type: application
+    urls:
+    - https://nraw.github.io/kedro-argo-helm/kedro-argo-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 0.0.7
-    created: "2020-04-02T21:32:29.776488687+02:00"
+    created: "2020-04-02T22:15:59.341787961+02:00"
     description: A Helm chart for building an Argo pipeline from Kedro
     digest: 7c56e4c01f1aa6d05a3d9346826088663267dbedd5cae970418c7a0ad55d5d5d
     name: kedro-argo
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://nraw.github.io/kedro-argo-helm/kedro-argo-0.1.1.tgz
     version: 0.1.1
-generated: "2020-04-02T21:32:29.776130346+02:00"
+generated: "2020-04-02T22:15:59.341400667+02:00"
